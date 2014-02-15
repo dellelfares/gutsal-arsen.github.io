@@ -1,6 +1,5 @@
 var addressBookModule = angular.module("addressBook", ['pascalprecht.translate']);
 
-
 addressBookModule.config(function ($translateProvider) {
     $translateProvider.translations('en', {
         ADDRESSBOOK: 'AddressBook',
@@ -94,7 +93,7 @@ addressBookModule.controller("FormController", function($scope, $element){
 
     $scope.reset = function(){
         $scope.item = {}
-        $scope.stateSave = false
+        //$scope.stateSave = false
     }
 
     $scope.add = function(){
