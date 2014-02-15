@@ -9,6 +9,8 @@ exports.config = {
     'browserName': 'chrome'
   },
 
+  baseUrl: 'http://gutsal-arsen.github.io/', // <!-- baseUrl does not work for some reason. Need to provide --baseUrl option
+
   // Spec patterns are relative to the current working directly when
   // protractor is called.
   specs: ['example_spec.js'],
