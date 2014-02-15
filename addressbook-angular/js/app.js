@@ -43,7 +43,6 @@ addressBookModule.controller('LanguageController', function ($scope, $translate)
     $scope.language = $scope.languages[0].name
 
     $scope.changeLanguage = function (key) {
-        console.log($scope.language)
         $translate.uses(key);
     };
 });
@@ -63,8 +62,12 @@ addressBookModule.controller("FormController", function($scope, $element){
     $scope.groups = {};
     $scope.groupKeys = [];
 
-    for(var idx in $scope.items)
-        $scope.groups[$scope.items[idx].group] = ''
+    var recollectGroups;
+    (recollectGroups = function(){
+        $scope.groups = {};
+        for(var idx in $scope.items)
+            $scope.groups[$scope.items[idx].group] = ''
+    })()
 
     $scope.stateSave = false;
 
@@ -78,7 +81,8 @@ addressBookModule.controller("FormController", function($scope, $element){
     }
 
     $scope.$watch('groups', function(newVal, oldVa){
-        $scope.groupKeys = Object.keys($scope.groups)
+        recollectGroups();
+        $scope.groupKeys = Object.keys($scope.groups);
     }, true)
 
     $scope.item = {
@@ -90,17 +94,18 @@ addressBookModule.controller("FormController", function($scope, $element){
 
     $scope.reset = function(){
         $scope.item = {}
+        $scope.stateSave = false
     }
 
     $scope.add = function(){
         if($scope.stateSave == false){
             $scope.items.push($scope.item)
-            $scope.groups[$scope.item.group] = ''
             $scope.item = {}
+            recollectGroups()
         } else {
             $scope.stateSave = false
-            $scope.groups[$scope.item.group] = ''
             $scope.item = {}
+            recollectGroups()
         }
     }
 
@@ -109,11 +114,21 @@ addressBookModule.controller("FormController", function($scope, $element){
     }
 
     $scope.edit = function(index){
-        $scope.item = $scope.items[index]
+        var num = -1;
+        for(var idx in $scope.items){
+            if(($scope.items[idx].group == $scope.group) || (typeof($scope.group) === 'undefined')){
+                num ++;
+                if(num == index){
+                    $scope.item = $scope.items[idx]
+                    break;
+                }
+            }
+        }
         $scope.stateSave = true
     }
 
     $scope.changeGroup = function(key){
-        console.log(key);        
+        $scope.group = key;
+        
     }
 })

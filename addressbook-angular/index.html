@@ -1,0 +1,121 @@
+<!doctype html>
+<html ng-app="addressBook">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular-translate.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/jquery-1.10.1.min.js"></script>
+
+  <script src="js/jquery-ui.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+
+
+  <style>
+    .odd {
+      background-color: #d3d3d3;
+    }
+    .edited-true {
+      display:none;
+    }
+    .data_row:hover {
+     border-right: orange solid 5px;
+    }
+  </style>
+  <!-- <script> -->
+  <!--   $(".selectpicker").selectpicker('render'); -->
+  <!-- </script> -->
+</head>
+<body>
+  <div class="page-header">
+    <h3>{{ 'ADDRESSBOOK' | translate}}:Angular</h3>
+  </div>
+
+  <div ng-controller="LanguageController">
+    <div class="col-lg-3">
+      <div class="input-group">
+        <span class="input-group-addon">{{ 'CHOOSE_LANGUAGE' | translate}}:</span>
+        <select ng-init="language = languages[0]" ng-model="language" ng-options="l.name for l in languages" ng-change="changeLanguage(language.name)" class="form-control">
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div ng-controller="FormController">
+    <div class="col-lg-3">
+      <div class="input-group">
+        <span class="input-group-addon">{{ 'GROUP_BY' | translate}}:</span>
+        <select ng-init="group = groups[0]" ng-model="group" ng-options="g for g in groupKeys" ng-change="changeGroup(group)" class="form-control">
+          <option value="">-- choose group --</option>
+        </select>
+      </div>
+    </div>
+    
+    <table class="table" class="table-stripped span12">
+      <tr>
+        <th translate="NAME" class="ng-scope"></th>
+        <th translate="SURNAME" class="ng-scope"></th>
+        <th translate="PHONE" class="ng-scope"></th>
+        <th translate="GROUP" class="ng-scope"></th>
+      </tr>
+      <tr ng-repeat="item in items | filter:grouped" class="{{ isOdd($index) }} data_row" ng-click="edit($index)">
+        <td>{{ item.name }}</td> 
+        <td>{{ item.surname }}</td> 
+        <td>{{ item.phone }}</td> 
+        <td>{{ item.group }}</td>
+      </tr>
+    </table>
+
+    <form ng-submit="add()">
+      <div class="row">
+
+        <div class="col-lg-2">
+          <div class="input-group input-group-lg">
+            <span translate="NAME" class="ng-scope input-group-addon"></span>
+            <input ng-model="item.name" class="form-control" required/>
+          </div>
+        </div>
+
+        <div class="col-lg-2">
+          <div class="input-group input-group-lg">
+            <span translate="SURNAME" class="ng-scope input-group-addon"></span>
+            <input ng-model="item.surname" class="form-control" />
+          </div>
+        </div>
+        
+        <div class="col-lg-2">
+          <div class="input-group input-group-lg">
+            <span translate="PHONE" class="ng-scope input-group-addon"></span>
+            <input ng-model="item.phone" class="form-control" required/>
+          </div>
+        </div>
+
+        <div class="col-lg-2">
+          <div class="input-group input-group-lg">
+            <span translate="GROUP" class="ng-scope input-group-addon"></span>
+            <input ng-model="item.group" class="form-control" required/>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <button class="btn btn-lg btn-success">
+            <span class="glyphicon glyphicon-pencil"></span>
+            {{ stateSave?'FINISH':'ADD' | translate}}
+          </button>
+          <button ng-click="reset()" class="btn btn-lg btn-info">
+            <span class="glyphicon glyphicon-asterisk"></span>
+            {{ 'RESET' | translate}}
+          </button>
+        </div> 
+
+      </div>
+
+    </form>
+  </div>
+</body>
+</html>
