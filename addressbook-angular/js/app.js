@@ -93,7 +93,7 @@ addressBookModule.controller("FormController", function($scope, $element){
 
     $scope.reset = function(){
         $scope.item = {}
-        //$scope.stateSave = false
+        $scope.stateSave = false
     }
 
     $scope.add = function(){
