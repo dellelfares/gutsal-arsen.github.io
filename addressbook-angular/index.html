@@ -24,6 +24,10 @@
     .data_row:hover {
       border-right: orange solid 5px;
     }
+
+    .data_row td {
+     cursor: pointer;
+    }
   </style>
   <!-- <script> -->
   <!--   $(".selectpicker").selectpicker('render'); -->
@@ -34,86 +38,98 @@
     <h3>{{ 'ADDRESSBOOK' | translate}}:Angular</h3>
   </div>
 
-  <div ng-controller="LanguageController">
-    <div class="col-lg-3">
-      <div class="input-group">
-        <span class="input-group-addon">{{ 'CHOOSE_LANGUAGE' | translate}}:</span>
-        <select ng-init="language = languages[0]" ng-model="language" ng-options="l.name for l in languages" ng-change="changeLanguage(language.name)" class="form-control">
-        </select>
-      </div>
-    </div>
-  </div>
+  <div class="container">
+    <div class="row">
 
-  <div ng-controller="FormController">
-    <div class="col-lg-3">
-      <div class="input-group">
-        <span class="input-group-addon">{{ 'GROUP_BY' | translate}}:</span>
-        <select ng-init="group = groups[0]" ng-model="group" ng-options="g for g in groupKeys" ng-change="changeGroup(group)" class="form-control">
-          <option value="">-- choose group --</option>
-        </select>
+      <div ng-controller="LanguageController">
+        <div class="col-lg-3">
+          <div class="input-group">
+            <span class="input-group-addon">{{ 'CHOOSE_LANGUAGE' | translate}}:</span>
+            <select ng-init="language = languages[0]" ng-model="language" ng-options="l.name for l in languages" ng-change="changeLanguage(language.name)" class="form-control">
+            </select>
+          </div>
+        </div>
       </div>
-    </div>
+
+    </div> <!-- .row -->
     
-    <table class="table table-stripped span12">
-      <tr>
-        <th translate="NAME" class="ng-scope"></th>
-        <th translate="SURNAME" class="ng-scope"></th>
-        <th translate="PHONE" class="ng-scope"></th>
-        <th translate="GROUP" class="ng-scope"></th>
-      </tr>
-      <tr ng-repeat="item in items | filter:grouped" class="{{ isOdd($index) }} data_row" ng-click="edit($index)">
-        <td>{{ item.name }}</td> 
-        <td>{{ item.surname }}</td> 
-        <td>{{ item.phone }}</td> 
-        <td>{{ item.group }}</td>
-      </tr>
-    </table>
+    <div class="empty">&nbsp;</div>
 
-    <form ng-submit="add()">
+    <div ng-controller="FormController">
       <div class="row">
 
-        <div class="col-lg-2">
-          <div class="input-group input-group-lg">
-            <span translate="NAME" class="ng-scope input-group-addon"></span>
-            <input ng-model="item.name" class="form-control" required/>
+        <div class="col-lg-3">
+          <div class="input-group">
+            <span class="input-group-addon">{{ 'GROUP_BY' | translate}}:</span>
+            <select ng-init="group = groups[0]" ng-model="group" ng-options="g for g in groupKeys" ng-change="changeGroup(group)" class="form-control">
+              <option value="">-- choose group --</option>
+            </select>
           </div>
         </div>
 
-        <div class="col-lg-2">
-          <div class="input-group input-group-lg">
-            <span translate="SURNAME" class="ng-scope input-group-addon"></span>
-            <input ng-model="item.surname" class="form-control" />
+      </div><!-- .row -->
+      
+      <table class="table table-stripped span12">
+        <tr>
+          <th translate="NAME" class="ng-scope"></th>
+          <th translate="SURNAME" class="ng-scope"></th>
+          <th translate="PHONE" class="ng-scope"></th>
+          <th translate="GROUP" class="ng-scope"></th>
+        </tr>
+        <tr ng-repeat="item in items | filter:grouped" class="{{ isOdd($index) }} data_row" ng-click="edit($index)">
+          <td>{{ item.name }}</td> 
+          <td>{{ item.surname }}</td> 
+          <td>{{ item.phone }}</td> 
+          <td>{{ item.group }}</td>
+        </tr>
+      </table>
+
+      <form ng-submit="add()">
+        <div class="row">
+
+          <div class="col-lg-2">
+            <div class="input-group input-group-lg">
+              <span translate="NAME" class="ng-scope input-group-addon"></span>
+              <input ng-model="item.name" class="form-control" required/>
+            </div>
           </div>
-        </div>
-        
-        <div class="col-lg-2">
-          <div class="input-group input-group-lg">
-            <span translate="PHONE" class="ng-scope input-group-addon"></span>
-            <input ng-model="item.phone" class="form-control" required/>
+
+          <div class="col-lg-2">
+            <div class="input-group input-group-lg">
+              <span translate="SURNAME" class="ng-scope input-group-addon"></span>
+              <input ng-model="item.surname" class="form-control" />
+            </div>
           </div>
-        </div>
-
-        <div class="col-lg-2">
-          <div class="input-group input-group-lg">
-            <span translate="GROUP" class="ng-scope input-group-addon"></span>
-            <input ng-model="item.group" class="form-control" required/>
+          
+          <div class="col-lg-2">
+            <div class="input-group input-group-lg">
+              <span translate="PHONE" class="ng-scope input-group-addon"></span>
+              <input ng-model="item.phone" class="form-control" required/>
+            </div>
           </div>
+
+          <div class="col-lg-2">
+            <div class="input-group input-group-lg">
+              <span translate="GROUP" class="ng-scope input-group-addon"></span>
+              <input ng-model="item.group" class="form-control" required/>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <button class="btn btn-lg btn-success">
+              <span class="glyphicon glyphicon-pencil"></span>
+              {{ stateSave?'FINISH':'ADD' | translate}}
+            </button>
+            <button ng-click="reset()" class="btn btn-lg btn-info">
+              <span class="glyphicon glyphicon-asterisk"></span>
+              {{ 'RESET' | translate}}
+            </button>
+          </div> 
+
         </div>
 
-        <div class="col-lg-4">
-          <button class="btn btn-lg btn-success">
-            <span class="glyphicon glyphicon-pencil"></span>
-            {{ stateSave?'FINISH':'ADD' | translate}}
-          </button>
-          <button ng-click="reset()" class="btn btn-lg btn-info">
-            <span class="glyphicon glyphicon-asterisk"></span>
-            {{ 'RESET' | translate}}
-          </button>
-        </div> 
-
-      </div>
-
-    </form>
+      </form>
+    </div>
   </div>
 </body>
 </html>
