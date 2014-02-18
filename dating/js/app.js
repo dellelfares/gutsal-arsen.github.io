@@ -19,13 +19,14 @@ datingSite.controller('LanguageController', function($scope, $translate){
 })
 
 datingSite.controller('PhotoController', ['$scope', '$http', '$translate', function ($scope, $http, $translate) {
-    $scope.languages =[{name: 'en'}, {name: 'de'}]
-    $scope.language = $scope.languages[0].name
-
-    $scope.changeLanguage = function (key) {
-        $translate.uses(key);
-    };
+    $http.get('http://217.196.165.81:8983/solr/dating/query?q=sex:woman&wt=json')
+        .success(function(data, status, headers, config){
+            console.log('Success', data)
+        }).error(function(data status, headers, config){
+            console.log('Error', data)
+        })
 }]);
+
 
 /*
 addressBookModule.controller("FormController", function($scope, $element){
