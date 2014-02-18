@@ -22,7 +22,7 @@ datingSite.controller('PhotoController', ['$scope', '$http', '$translate', funct
     $http.get('http://217.196.165.81:8983/solr/dating/query?q=sex:woman&wt=json')
         .success(function(data, status, headers, config){
             console.log('Success', data)
-        }).error(function(data status, headers, config){
+        }).error(function(data, status, headers, config){
             console.log('Error', data)
         })
 }]);
