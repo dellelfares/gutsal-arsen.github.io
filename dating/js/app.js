@@ -18,8 +18,14 @@ datingSite.controller('LanguageController', function($scope, $translate){
     };
 })
 
+
+
 datingSite.controller('PhotoController', ['$scope', '$http', '$translate', function ($scope, $http, $translate) {
-    $http.jsonp('http://217.196.165.81:8983/solr/dating/query?q=sex:woman&wt=json&json.wrf=jsonp_callback&callback=jsonp_callback')
+    var jsonp_callback = function(data){
+        console.log(data);
+    }
+
+    $http.jsonp('http://217.196.165.81:8983/solr/dating/query?q=sex:woman&wt=json&json.wrf=jsonp_callback')
         .success(function(data, status, headers, config){
             console.log('Success', data)
         }).error(function(data, status, headers, config){
