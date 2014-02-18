@@ -1,5 +1,5 @@
 {
-    DATING:"Dating",
-    EMAIL:"Email",
-    PASSWORD:"Password"
+    "DATING":"Dating",
+    "EMAIL":"Email",
+    "PASSWORD":"Password"
 }
