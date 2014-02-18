@@ -23,7 +23,7 @@ datingSite.controller('PhotoController', ['$scope', '$http', '$translate', funct
         .success(function(data, status, headers, config){
             console.log('Success', data)
         }).error(function(data, status, headers, config){
-            console.log('Error', status)
+            console.log('Error', data, status, headers, config)
         })
 }]);
 
