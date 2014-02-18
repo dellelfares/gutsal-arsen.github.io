@@ -1,19 +1,6 @@
 var datingSite = angular.module("datingSite", ['pascalprecht.translate']);
 
 datingSite.config(function ($translateProvider) {
-    /*
-    $translateProvider.translations('en', {
-        DATING: 'Dating',
-        EMAIL: 'Email',
-        PASSWORD: 'Password',
-    });
-
-    $translateProvider.translations('uk', {
-        DATING: 'Знайомства',
-        EMAIL: 'Е-мейл',
-        PASSWORD: 'Пароль',
-    });
-    */
     $translateProvider.preferredLanguage('en');
 
     $translateProvider.useStaticFilesLoader({
