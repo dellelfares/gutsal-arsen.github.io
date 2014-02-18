@@ -14,7 +14,7 @@ datingSite.config(function ($translateProvider) {
         PASSWORD: 'Пароль',
     });
     */
-    $translateProvider.preferredLanguage('uk');
+    $translateProvider.preferredLanguage('en');
 
     $translateProvider.useStaticFilesLoader({
         prefix: 'languages/',
