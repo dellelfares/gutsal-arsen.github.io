@@ -1,3 +1,5 @@
-DATING=Знайомства
-EMAIL=Е-мейл
-PASSWORD=Пароль
+{
+    "DATING":"Знайомства",
+    "EMAIL":"Е-мейл",
+    "PASSWORD":"Пароль"
+}
