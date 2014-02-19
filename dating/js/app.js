@@ -24,8 +24,10 @@ datingSite.controller('PhotoController', ['$scope', '$http', '$translate', funct
     $http.jsonp('http://217.196.165.81:8983/solr/dating/query?q=sex:woman&wt=json&json.wrf=JSON_CALLBACK')
         .success(function(data, status, headers, config){
             $scope.profiles = {}
+            var profile;
             console.log('Success', data)
-            for(var doc in data.response.docs){
+            for(var idx in data.response.docs){
+                var doc = data.response.docs[idx]
                 for(field in doc){
                     profile[field] = doc[field];
                     $scope.profiles.push(profile);
