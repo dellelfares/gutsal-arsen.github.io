@@ -65,23 +65,32 @@
     </div>
   </div>
 
-    <div class="row">
-      <div class="col-ng-3">
-        <h3></h3>
-      </div>
-      <div class="col-ng-8">
-      </div>
-    </div> <!-- .row -->
+</div><!-- .page-header -->
 
-  </div><!-- .page-header -->
+<div class="container">
+  <div class="row">
+    <ul ng-repeat="profile in profiles">
+      <li><img src="{{profile.photo_url}}"/></li>
+      <li>Name: {{profile.name}}</li>
+      <li>Age: {{profile.age}}</li>
+      <li>Date of Birth: {{profile.date_of_birth}}</li>
+      <li>Height: {{profile.height}}</li>
+      <li>Marital status: {{profile.marital_status}}</li>
+      <li>Childs: {{profile.childs}}</li>
+      <li>City: {{profile.city}}</li>
+      <li>Country: {{profile.country}}</li>
+      <li>Education: {{profile.education}}</li>
+      <li>Confession: {{profile.confession}}</li>
+      <li>Church: {{profile.church}}</li>
+      <li>Interests: {{profile.interests}}</li>
+      <li>About: {{profile.about}}</li>
+      <li>Sex: {{profile.sex}}</li>
+    </ul>
 
-  <div class="container">
-    <div class="row">
-
-    </div> <!-- .row -->
-    
-    <div ng-controller="PhotoController">
-      Photos goes here.
-    </div>
+  </div> <!-- .row -->
+  
+  <div ng-controller="PhotoController">
+    Photos goes here.
+  </div>
 </body>
 </html>
