@@ -18,10 +18,9 @@ datingSite.controller('LanguageController', function($scope, $translate){
     };
 })
 
+datingSite.controller('PhotoController', ['$scope', '$http', '$rootScope', '$timeout', 'localStorageService', function ($scope, $http, $rootScope, $timeout, localStorageService) {
 
-datingSite.controller('PhotoController', ['$scope', '$http', 'localStorageService', function ($scope, $http, localStorageService) {
-
-    $http.jsonp('http://217.196.165.81:8983/solr/dating/query?q=sex:woman&wt=json&json.wrf=JSON_CALLBACK')
+    $http.jsonp('http://217.196.165.81:8983/solr/dating/query?q=sex:woman&wt=json&rows=50&json.wrf=JSON_CALLBACK')
         .success(function(data, status, headers, config){
             $scope.profiles = [];
             console.log('Success', data)
@@ -35,6 +34,30 @@ datingSite.controller('PhotoController', ['$scope', '$http', 'localStorageServic
             }
 
             localStorageService.add($scope.profiles);
+            var collage = function() {
+                $('.image-collage').removeWhitespace().collagePlus(
+                    {
+                        'fadeSpeed'     : 2000,
+                        'targetHeight'  : 200,
+                        'effect'        : 'effect-3',
+                        'direction'     : 'vertical'
+                    }
+                );
+            };
+
+            var resizeTimer = null;
+            $rootScope.$watch('windowWidth', function(newVal, oldVal){
+                console.log('Width changed')
+                // hide all the images until we resize them
+                $('.image-collage .image-wrapper').css("opacity", 0);
+                // set a timer to re-apply the plugin
+                if (resizeTimer) $timeout.cancel(resizeTimer);
+                resizeTimer = $timeout(collage, 200);
+            })
+
+            collage();
+            $('.image-collage').collageCaption();
+
         }).error(function(data, status, headers, config){
             console.log('Error', data, status, headers, config)
         })

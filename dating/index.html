@@ -15,7 +15,6 @@
   <script src="js/extras/jquery.removeWhitespace.min.js"></script>
   <script src="js/extras/jquery.collageCaption.min.js"></script>
 
-
   <script src="js/collage.js"></script>
   <script src="js/app.js"></script>
 
@@ -23,6 +22,7 @@
   <link rel="stylesheet" href="css/bootstrap.min.css"/>
   <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
   <link rel="stylesheet" href="css/transitions.css"/>
+  <link rel="stylesheet" href="css/examples.css">
   <style>
     .top-buffer { margin-left:50px; }
   </style>
@@ -74,7 +74,6 @@
   </div>
 
   <div class="container" ng-controller="PhotoController">
-    <div class="row">
       <section class="image-collage effect-parent">
         <div class="image-wrapper" 
              ng-repeat="profile in profiles"
@@ -100,7 +99,6 @@
         <!-- <li>About: {{ profile.about }}</li> -->
         <!-- <li>Sex: {{ profile.sex }}</li> -->
       </section>
-    </div> <!-- .row -->
   </div>
 
 </body>
