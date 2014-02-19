@@ -5,15 +5,24 @@
   <script src="js/angular.min.js"></script>
   <script src="js/angular-translate.min.js"></script>
   <script src="js/angular-translate-loader-static-files.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/angular-local-storage.js"></script>
   <script src="js/jquery-1.11.0.min.js"></script>
 
   <script src="js/jquery-ui.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
 
+  <script src="js/extras/jquery.collagePlus.min.js"></script>
+  <script src="js/extras/jquery.removeWhitespace.min.js"></script>
+  <script src="js/extras/jquery.collageCaption.min.js"></script>
+
+
+  <script src="js/collage.js"></script>
+  <script src="js/app.js"></script>
+
   <link rel="stylesheet" href="css/jquery-ui.css">
   <link rel="stylesheet" href="css/bootstrap.min.css"/>
   <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+  <link rel="stylesheet" href="css/transitions.css"/>
   <style>
     .top-buffer { margin-left:50px; }
   </style>
@@ -66,23 +75,31 @@
 
   <div class="container" ng-controller="PhotoController">
     <div class="row">
-      <ul ng-repeat="profile in profiles">
-        <li><img src="{{ profile.photo_url }}"/></li>
-        <li>Name: {{ profile.name }}</li>
-        <li>Age: {{ profile.age }}</li>
-        <li>Date of Birth: {{ profile.date_of_birth }}</li>
-        <li>Height: {{ profile.height }}</li>
-        <li>Marital status: {{ profile.marital_status }}</li>
-        <li>Childs: {{ profile.childs }}</li>
-        <li>City: {{ profile.city }}</li>
-        <li>Country: {{ profile.country }}</li>
-        <li>Education: {{ profile.education }}</li>
-        <li>Confession: {{ profile.confession }}</li>
-        <li>Church: {{ profile.church }}</li>
-        <li>Interests: {{ profile.interests }}</li>
-        <li>About: {{ profile.about }}</li>
-        <li>Sex: {{ profile.sex }}</li>
-      </ul>
+      <section class="image-collage effect-parent">
+        <div class="image-wrapper" 
+             ng-repeat="profile in profiles"
+             data-caption="Name: {{ profile.name }}, 
+                           Age: {{ profile.age }}"
+              >
+          <a>
+            <img src="{{ profile.photo_url }}" style="width:200px"/>
+          </a>
+        </div>
+        <!-- <li>Name: <a href="{{ profile.id }}">{{ profile.name }}</a></li> -->
+        <!-- <li>Age: {{ profile.age }}</li> -->
+        <!-- <li>Date of Birth: {{ profile.date_of_birth }}</li> -->
+        <!-- <li>Height: {{ profile.height }}</li> -->
+        <!-- <li>Marital status: {{ profile.marital_status }}</li> -->
+        <!-- <li>Childs: {{ profile.childs }}</li> -->
+        <!-- <li>City: {{ profile.city }}</li> -->
+        <!-- <li>Country: {{ profile.country }}</li> -->
+        <!-- <li>Education: {{ profile.education }}</li> -->
+        <!-- <li>Confession: {{ profile.confession }}</li> -->
+        <!-- <li>Church: {{ profile.church }}</li> -->
+        <!-- <li>Interests: {{ profile.interests }}</li> -->
+        <!-- <li>About: {{ profile.about }}</li> -->
+        <!-- <li>Sex: {{ profile.sex }}</li> -->
+      </section>
     </div> <!-- .row -->
   </div>
 

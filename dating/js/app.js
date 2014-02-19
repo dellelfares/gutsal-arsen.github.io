@@ -1,4 +1,4 @@
-var datingSite = angular.module("datingSite", ['pascalprecht.translate']);
+var datingSite = angular.module("datingSite", ['pascalprecht.translate', 'LocalStorageModule']);
 
 datingSite.config(function ($translateProvider) {
     $translateProvider.preferredLanguage('en');
@@ -19,7 +19,7 @@ datingSite.controller('LanguageController', function($scope, $translate){
 })
 
 
-datingSite.controller('PhotoController', ['$scope', '$http', '$translate', function ($scope, $http, $translate) {
+datingSite.controller('PhotoController', ['$scope', '$http', 'localStorageService', function ($scope, $http, localStorageService) {
 
     $http.jsonp('http://217.196.165.81:8983/solr/dating/query?q=sex:woman&wt=json&json.wrf=JSON_CALLBACK')
         .success(function(data, status, headers, config){
@@ -33,6 +33,8 @@ datingSite.controller('PhotoController', ['$scope', '$http', '$translate', funct
                 }
                 $scope.profiles.push(profile);
             }
+
+            localStorageService.add($scope.profiles);
         }).error(function(data, status, headers, config){
             console.log('Error', data, status, headers, config)
         })
