@@ -30,8 +30,8 @@ datingSite.controller('PhotoController', ['$scope', '$http', '$translate', funct
                 var doc = data.response.docs[idx]
                 for(field in doc){
                     profile[field] = doc[field];
-                    $scope.profiles.push(profile);
                 }
+                $scope.profiles.push(profile);
             }
         }).error(function(data, status, headers, config){
             console.log('Error', data, status, headers, config)
