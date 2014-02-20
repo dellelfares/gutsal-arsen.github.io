@@ -30,7 +30,7 @@ datingSite.controller('PhotoController', ['$scope', '$http', '$rootScope', '$tim
                     {
                         'fadeSpeed'     : 2000,
                         'targetHeight'  : 200,
-                        'effect'        : 'effect-3',
+                        'effect'        : 'effect-5',
                         'direction'     : 'vertical'
                     }
                 );

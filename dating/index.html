@@ -80,8 +80,8 @@
              data-caption="Name: {{ profile.name }}, 
                            Age: {{ profile.age }}"
               >
-          <a>
-            <img src="{{ profile.photo_url }}" style="width:200px"/>
+          <a href="{{ profile.id }}">
+            <img src="{{ profile.photo_url[0] }}" style="width:200px"/>
           </a>
         </div>
         <!-- <li>Name: <a href="{{ profile.id }}">{{ profile.name }}</a></li> -->
