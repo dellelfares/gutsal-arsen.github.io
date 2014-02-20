@@ -20,7 +20,7 @@ datingSite.controller('LanguageController', function($scope, $translate){
 
 datingSite.controller('PhotoController', ['$scope', '$http', '$rootScope', '$timeout', 'localStorageService', function ($scope, $http, $rootScope, $timeout, localStorageService) {
 
-    $http.jsonp('http://217.196.165.81:8983/solr/dating/query?q=sex:woman&wt=json&rows=50&json.wrf=JSON_CALLBACK')
+    $http.jsonp('http://217.196.165.81:8983/solr/dating/query?q=sex:woman&wt=json&rows=100&json.wrf=JSON_CALLBACK')
         .success(function(data, status, headers, config){
             $scope.profiles = data.response.docs;
 
